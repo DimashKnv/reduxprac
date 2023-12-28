@@ -1,27 +1,22 @@
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  incrementAction,
-  decrementAction,
-  resetAction,
-  updateText,
-} from "./store/reducer";
+import { increment,decrement,reset } from "./rtk_store/reducers";
 
-function App() {
+function RTKapp() {
   const dispatch = useDispatch();
   const count = useSelector((state) => state.count.count);
-  const text = useSelector((state) => state.text.text);
+//   const text = useSelector((state) => state.text.text);
 
-  function increment(step) {
-    dispatch(incrementAction(step));
+  function incrementClick(step) {
+    dispatch(increment(step));
   }
 
-  function decrement(step) {
-    dispatch(decrementAction(step));
+  function decrementClick(step) {
+    dispatch(decrement(step));
   }
-  function reset() {
-    dispatch(resetAction());
+  function resetClick() {
+    dispatch(reset());
   }
 
   function updateTitle(value) {
@@ -31,13 +26,13 @@ function App() {
   return (
     <>
       <h1>
-        {text}
+        Counter
         {count}
       </h1>
       <button
         style={{ border: "solid 1px blue" }}
         onClick={() => {
-          increment(Number(prompt("Insert a number step")));
+          incrementClick(Number(prompt("Insert a number step")));
         }}
       >
         Increase
@@ -45,12 +40,12 @@ function App() {
       <button
         style={{ border: "solid 1px blue" }}
         onClick={() => {
-          decrement(Number(prompt("Insert a number step")));
+          decrementClick(Number(prompt("Insert a number step")));
         }}
       >
         Decrease
       </button>
-      <button style={{ border: "solid 1px blue" }} onClick={reset}>
+      <button style={{ border: "solid 1px blue" }} onClick={()=>{resetClick()}}>
         Reset
       </button>
       <button
@@ -65,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default RTKapp;

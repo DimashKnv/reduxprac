@@ -2,38 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { createStore } from "redux";
+import { store } from "./store/store.js";
+
 import { Provider } from "react-redux";
-
-let initialState = { count: 0};
-
-function counterReducer(state = initialState, action) {
-  if (action.type == "INCREMENT_COUNT") {
-    return { ...state, count: state.count + action.payload };
-  }
-  if (action.type == "DECREMENT_COUNT") {
-    return { ...state, count: state.count - action.payload };
-  }
-  if (action.type == "RESET_COUNT") {
-    return { ...state, count: 0 };
-  }
-  return state;
-}
-
-const store = createStore(counterReducer);
-console.log(store.getState());
-
-
-
-
-
-
+import RTKapp from "./RTKapp.jsx";
+import { rtk_store } from "./rtk_store/store.js";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={rtk_store}>
+      {/* <App /> */}
+      <RTKapp/>
     </Provider>
   </React.StrictMode>
 );
